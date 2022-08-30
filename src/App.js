@@ -1,16 +1,23 @@
 import React from "react";
-import Footer from "./Components/Footer/Footer";
-import Home from "./Components/Home/Home";
-import Navbar from "./Components/Navbar/Navbar";
+import NavBar from "./Components/Navbar/Navbar";
 import MainRoutes from "./MainRoutes";
+import Footer from "./Components/Footer/Footer";
+import AuthContextProvider from "./context/AuthContext";
+import CartContextProvider from "./context/CartContextProvider";
+import ProductContextFire from "./context/ProductsContextProvider";
+import ProductsContextProvider from "./context/ProductsContextProvider";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <MainRoutes />
-      {/* <Footer /> */}
-    </div>
+    <AuthContextProvider>
+      <CartContextProvider>
+        <ProductsContextProvider>
+          <NavBar />
+          <MainRoutes />
+          <Footer />
+        </ProductsContextProvider>
+      </CartContextProvider>
+    </AuthContextProvider>
   );
 };
 
