@@ -1,8 +1,6 @@
 import React from "react";
 import logotype from "../../Image/logotype.png";
 import cart from "../../Image/cart.svg";
-import plus from "../../Image/plus.svg";
-import wine1 from "../../Image/wine1.jpg";
 import ReactPaginate from "react-paginate";
 import { useContext, useState, useEffect } from "react";
 import { useProducts } from "../../context/ProductsContextProvider";
@@ -18,9 +16,12 @@ const Productlist = () => {
   const { getProducts, productsArr, pageTotalCount, deleteProduct } =
     useProducts();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
-  const [type, setType] = useState(searchParams.get("category") || "all");
+  const [type, setType] = useState("all");
+  const [value, setValue] = useState("");
+
+  const [filtredData, setFiltredData] = useState([]);
 
   const [price, setPrice] = useState([0, 1500]);
 
@@ -29,57 +30,59 @@ const Productlist = () => {
   const { addProductCart, addLikeToProduct } = useContext(cartContext);
 
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-  useEffect(() => {
-    getProducts(type, price[0], price[1]);
-    // if (searchParams.get("category")) {
-    //   setSearchParams(paramsWithType());
-    // } else {
-    //   setSearchParams(paramsNoType());
-    // }
-  }, []);
 
-  const paramsWithType = () => {
-    return {
-      category: type,
-      q: searchParams.get("q") || "",
-      price_gte: price[0],
-      price_lte: price[1],
-      _page: page,
-      _limit: 6,
-    };
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const getFiltredProducts = () => {
+    const filtred = productsArr.filter((item) => {
+      return item.title?.toLowerCase().includes(value.toLocaleLowerCase());
+    });
+    if (filtred.length) {
+      setFiltredData(filtred);
+    } else {
+      setFiltredData(productsArr);
+    }
   };
 
-  const paramsNoType = () => {
-    return {
-      q: searchParams.get("q") || "",
-      price_gte: price[0],
-      price_lte: price[1],
-      _page: page,
-      _limit: 6,
-    };
-  };
+  // useEffect(() => {
+  //   getProducts(type, price[0], price[1]);
+  //   if (searchParams.get("category")) {
+  //     setSearchParams(paramsWithType());
+  //   } else {
+  //     setSearchParams(paramsNoType());
+  //   }
+  // }, []);
+
+  // const paramsWithType = () => {
+  //   return {
+  //     category: type,
+  //     q: searchParams.get("q") || "",
+  //     price_gte: price[0],
+  //     price_lte: price[1],
+  //     _page: page,
+  //     _limit: 6,
+  //   };
+  // };
+
+  // const paramsNoType = () => {
+  //   return {
+  //     q: searchParams.get("q") || "",
+  //     price_gte: price[0],
+  //     price_lte: price[1],
+  //     _page: page,
+  //     _limit: 6,
+  //   };
+  // };
 
   useEffect(() => {
     getProducts(type, price[0], price[1]);
-    if (searchParams.get("category")) {
-      setSearchParams(paramsWithType());
-    } else {
-      setSearchParams(paramsNoType());
-    }
-  }, [type]);
+  }, [type, value]);
 
   useEffect(() => {
-    getProducts(type, price[0], price[1]);
-    if (type === "all") {
-      setSearchParams(paramsNoType());
-    } else {
-      setSearchParams(paramsWithType());
-    }
-  }, [searchParams, type, price, page]);
-  // getProducts();
+    getFiltredProducts();
+  }, [productsArr]);
 
-  let limitPage = 6;
+  let limitPage = 5;
 
   let pageVisit = limitPage * currentPage;
 
@@ -95,7 +98,7 @@ const Productlist = () => {
   const changePage = ({ selected }) => {
     setCurrentPage(selected);
   };
-
+  console.log(pageVisit, pageVisit, limitPage);
   return (
     <div className="wrapper">
       <header>
@@ -125,10 +128,15 @@ const Productlist = () => {
         <div className="header-wine">
           <h1>Все вина</h1>
           <div className="search">
-            <input type="text" placeholder="search..." />
+            <input
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              type="text"
+              placeholder="search..."
+            />
           </div>
         </div>
-        <div className="cards">
+        <div className="cards" style={{ padding: "50px" }}>
           <div className="filter">
             <Filter
               type={type}
@@ -145,68 +153,59 @@ const Productlist = () => {
               </div> */}
           </div>
           <div className="content-cards">
-            {productsArr
+            {filtredData
               .slice(pageVisit, pageVisit + limitPage)
-              .map((product) => {
-                return (
-                  <div key={product.id}>
-                    <div className="card">
-                      <img
-                        width={133}
-                        height={120}
-                        src={product.image}
-                        alt=""
-                      />
-                      <div className="card-details">
-                        <p>{product.title}</p>
-                        <span>
-                          Цена: <b>{product.price}$</b>
-                        </span>
-                        <div
-                          className="buttons"
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            width: "auto",
+              .map((product) => (
+                <div key={product.id}>
+                  <div className="card">
+                    <img width={133} height={120} src={product.image} alt="" />
+                    <div className="card-details">
+                      <p>{product.title}</p>
+                      <span>
+                        Цена: <b>{product.price}$</b>
+                      </span>
+                      <div
+                        className="buttons"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          width: "auto",
+                        }}
+                      >
+                        <img
+                          onClick={() => addLikeToProduct(product)}
+                          width={40}
+                          height={40}
+                          src={liked}
+                          alt="like"
+                        />
+                        <AddShoppingCart
+                          className="navbar-icons-icon"
+                          style={{ width: "auto" }}
+                          onClick={() => addProductCart(product)}
+                          color={
+                            checkProductInCart(product.id) ? "error" : "primary"
+                          }
+                        />
+                        <button
+                          className="but-but"
+                          onClick={() => {
+                            navigate(`/cardDetails/${product.id}`);
                           }}
                         >
-                          <img
-                            onClick={() => addLikeToProduct(product)}
-                            width={40}
-                            height={40}
-                            src={liked}
-                            alt="like"
-                          />
-                          <AddShoppingCart
-                            className="navbar-icons-icon"
-                            style={{ width: "auto" }}
-                            onClick={() => addProductCart(product)}
-                            color={
-                              checkProductInCart(product.id)
-                                ? "error"
-                                : "primary"
-                            }
-                          />
-                          <button
-                            className="but-but"
-                            onClick={() => {
-                              navigate(`/cardDetails/${product.id}`);
-                            }}
-                          >
-                            {" "}
-                            more
-                          </button>
-                        </div>
-                        {/* <button onClick={() => handleClickDelete(product.id)}>
+                          {" "}
+                          more
+                        </button>
+                      </div>
+                      {/* <button onClick={() => handleClickDelete(product.id)}>
                           delete
                         </button> */}
-                      </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
           </div>
         </div>
       </div>

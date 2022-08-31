@@ -6,15 +6,16 @@ const Contacts = () => {
   return (
     <div className="contacts">
       <div className="contacts-uptext">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam,
-        perspiciatis blanditiis quod nihil deserunt nulla.
+        Got a question? Want to share an idea? Let us know. Fill out the form
+        below, or call/text us at 1-800-750-8828, Monday through Friday from 8–5
+        PST and Saturday from 9–3 PST
       </div>
       <div className="contacts-block">
         <div className="contacts-block-div">
           insta: <br /> facebook: <br /> phone number: <br /> address:
         </div>
         <div className="contacts-block-div">
-          melsov013 <br /> Nurlan <br /> 0700250270 <br /> syinbaeva
+          @wineshop <br /> wineshop.com <br /> +996700250270 <br /> syinbaeva 61
         </div>
       </div>
       <div style={{ width: "100%" }}>

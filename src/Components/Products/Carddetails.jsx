@@ -27,47 +27,52 @@ const Carddetails = () => {
       {!productDetails ? (
         <>Loading</>
       ) : (
-        <div key={productDetails.id} className="card-exact">
-          <div className="card exact">
-            <img width={133} height={120} src={productDetails.image} alt="" />
-            <div className="card-details">
-              <p>{productDetails.title}</p>
-              <span>
-                Цена: <b>{productDetails.price}$</b>
-              </span>
-              <div
-                className="buttons"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "auto",
-                }}
-              >
-                <img width={40} height={40} src={liked} alt="like" />
-                <AddShoppingCart
-                  className="navbar-icons-icon"
-                  style={{ width: "auto" }}
-                  onClick={() => addProductCart(productDetails)}
-                  color={
-                    checkProductInCart(productDetails.id) ? "error" : "primary"
-                  }
-                />
-              </div>
-              <div className="admin-panel">
-                {checkAdmin(user.email) ? (
-                  <>
-                    <button>delete</button>
-                    <button>edit</button>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-              {/* <button onClick={() => handleClickDelete(product.id)}>
+        <div className="product-det">
+          <div key={productDetails.id} className="card-exact">
+            <div className="card exact">
+              <img width={133} height={120} src={productDetails.image} alt="" />
+              <div className="card-details">
+                <p>{productDetails.title}</p>
+                <span>
+                  Цена: <b>{productDetails.price}$</b>
+                </span>
+                <div
+                  className="buttons"
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "auto",
+                  }}
+                >
+                  <img width={40} height={40} src={liked} alt="like" />
+                  <AddShoppingCart
+                    className="navbar-icons-icon"
+                    style={{ width: "auto" }}
+                    onClick={() => addProductCart(productDetails)}
+                    color={
+                      checkProductInCart(productDetails.id)
+                        ? "error"
+                        : "primary"
+                    }
+                  />
+                </div>
+                <h3>{productDetails.description}</h3>
+                <div className="admin-panel">
+                  {checkAdmin(user.email) ? (
+                    <>
+                      <button>delete</button>
+                      <button>edit</button>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                {/* <button onClick={() => handleClickDelete(product.id)}>
                             delete
                         </button> */}
+              </div>
             </div>
           </div>
         </div>

@@ -42,12 +42,12 @@ export default function EditProduct() {
 
   useEffect(() => {
     getOneProduct(id);
-  }, [id]);
+  }, [id, productDetails]);
 
   return (
     <div className="editProduct">
       {productDetails ? (
-        <>
+        <div style={{ marginTop: "300px" }}>
           <TextField
             sx={{ width: 300 }}
             id="outlined-basic"
@@ -92,8 +92,10 @@ export default function EditProduct() {
           <Button onClick={handleClick} variant="contained" disableElevation>
             Edit Product
           </Button>
-        </>
-      ) : null}
+        </div>
+      ) : (
+        <h1 style={{ marginTop: "290px" }}>loading</h1>
+      )}
     </div>
   );
 }

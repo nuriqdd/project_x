@@ -28,7 +28,7 @@ const MainRoutes = () => {
       <Route path="/cardDetails/:id" element={<Carddetails />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/adminG" element={<AdminGlobal />} />
-      <Route path="/edit" element={<EditProduct />} />
+      <Route path="/edit/:id" element={<EditProduct />} />
     </Routes>
   );
 };

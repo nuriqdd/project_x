@@ -29,6 +29,7 @@ const Filter = ({ type, setType, price, setPrice }) => {
           <FormControlLabel value="USA" control={<Radio />} label="USA" />
           <FormControlLabel value="Italy" control={<Radio />} label="Италия" />
           <FormControlLabel value="Spain" control={<Radio />} label="Испания" />
+          <FormControlLabel value="Russia" control={<Radio />} label="Россия" />
 
           <FormControlLabel
             value="all"

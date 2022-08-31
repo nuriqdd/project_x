@@ -9,17 +9,21 @@ const Home = () => {
             History Wine
           </h1>
           <p className="hometext" style={{ color: "white" }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-            suscipit fugiat sunt a aliquam labore vero rem est tenetur quas.
-            Mollitia nesciunt aut tempore blanditiis expedita quis, modi sed
-            illum ad, non necessitatibus architecto molestias earum fugiat illo
-            vitae ipsa vel corrupti rem amet, ex eius! Maxime ducimus expedita
-            earum! Soluta minima quibusdam, facere nam eligendi officiis harum
-            saepe ullam quaerat dicta minus tenetur consequuntur commodi
-            laudantium dolore consequatur! Placeat nihil exercitationem ab
-            tenetur temporibus quod voluptate cupiditate possimus ut autem
-            assumenda rerum, eveniet dolor inventore eum quos aliquid,
-            consequuntur culpa! Nostrum quasi, aliquid deserunt aperiam ab
+            Древнейший известный ферментированный напиток — рисовое вино,
+            изготовлявшееся в Китае 9 000 лет назад[1][нет в источнике].
+            Виноделие возникло после освоения людьми культивирования винограда;
+            это произошло в эпоху неолита. Первые производства возникли на
+            Ближнем Востоке, в Месопотамии, на Кипре и в Греции. На территории
+            Ирана в районе Хаджи-Фируз, заселённом 7000 лет назад, нашли кувшин
+            с остатками веществ, которые однозначно указывали на виноградное
+            вино. Он был датирован 5400-5000 гг. до н. э. По состоянию на 2009
+            год это была самая древняя находка, указывающая на производство
+            вина. Считается, что уже тогда был выращен вид винограда,
+            аналогичный современному Vitis vinifera, из которого изготавливают и
+            большинство современных вин[2][3]. В качестве одного из основных
+            очагов возникновения виноградной лозы и родины культурного
+            виноградарства рассматривается также Закавказье — территория Грузии
+            (8000 лет).
           </p>
           <div
             className="imgblock"
@@ -38,19 +42,29 @@ const Home = () => {
               alt="wine"
             />
           </div>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat
-            explicabo in ipsum similique ab tempore! Beatae fuga accusamus
-            voluptatibus dignissimos maiores repudiandae fugiat ipsum voluptates
-            cum quaerat est perferendis placeat itaque animi sapiente, dicta ut
-            repellat sed sequi totam voluptatum sunt tempore. Cumque ut
-            perspiciatis optio esse saepe commodi cupiditate animi non. Saepe
-            distinctio sint minus delectus consequatur, facere hic veritatis
-            maxime exercitationem obcaecati! Praesentium et consequuntur hic
-            debitis accusantium, ea nemo dolorem consequatur ex officia eum
-            impedit iusto optio! Voluptatum fuga distinctio beatae dignissimos
-            ea quidem aut rerum officiis vel eligendi accusantium ut, suscipit
-            reprehenderit. Nihil veritatis nisi quidem?
+          <p className="hometext" style={{ color: "white" }}>
+            Работа винодела начинается со сбора винограда, наступающего в тот
+            момент, когда виноград достиг полной зрелости, то есть когда в нём
+            образовалось оптимальное количество сахара и накоплено достаточное
+            количество фенольных соединений. К этому времени ягоды становятся
+            мягкими, кожица — тонкой и прочной; гребни приобретают бурую окраску
+            и более или менее деревенеют; кисти винограда слабо держатся на
+            кусте, ягоды — на гребне; сок последних становится гуще и слаще;
+            косточки легко отстают от содержимого ягод. Но стоит помнить, что
+            для точного установления времени сбора, играющего важную роль при
+            создании вина и находящегося в зависимости от местных почвенных и
+            климатических условий, от положения виноградника, от способа
+            воспитания лозы, от сорта винограда и т. д., требуется, помимо
+            перечисленных признаков спелости винограда, ещё многолетний опыт
+            винодела.
+          </p>
+          <p className="hometext" style={{ color: "white" }}>
+            Для получения натуральных сладких белых вин следует оставлять
+            виноград на кусте дольше — только бы он не испортился. Так, на Рейне
+            и в Сотерне виноград не снимается с куста, пока на нём не начинает
+            развиваться особый грибок (Botrytis cinerea), при этом ягоды сильно
+            сморщиваются, теряют в весе и в них весьма существенно увеличивается
+            содержание сахара.
           </p>
         </div>
       </div>

@@ -48,7 +48,6 @@ const ProductsContextProvider = ({ children }) => {
   const db = getFirestore(fire);
 
   const getProducts = async (type, start, end) => {
-    console.log(1, type);
     try {
       let querySnapshot = {};
       if (type === "all") {
@@ -67,6 +66,9 @@ const ProductsContextProvider = ({ children }) => {
           startAt(start),
           endAt(end)
         );
+        querySnapshot = await getDocs(q);
+      } else if (type === "all" || (!type && !start) || !end) {
+        let q = query(collection(db, "products"), orderBy("price"));
         querySnapshot = await getDocs(q);
       }
       let array = querySnapshot.docs.map((doc) => ({
@@ -100,18 +102,18 @@ const ProductsContextProvider = ({ children }) => {
   const addProduct = async (product) => {
     try {
       await addDoc(collection(db, "products"), product);
-      getProducts();
+      // getProducts();
     } catch (e) {
       console.log(e);
     }
   };
 
   const deleteProduct = async (id) => {
+    console.log(id);
     try {
       let products = doc(db, "products", id);
       await deleteDoc(products);
-      getProducts();
-      navigate("/products");
+      // getProducts();
     } catch (e) {
       console.error(e);
     }
@@ -121,8 +123,9 @@ const ProductsContextProvider = ({ children }) => {
     try {
       let editedProduct = doc(db, "products", id);
       await updateDoc(editedProduct, obj);
-      getProducts();
-      navigate("/products");
+      // getProducts();
+
+      navigate("/adminG");
     } catch (e) {
       console.error(e);
     }

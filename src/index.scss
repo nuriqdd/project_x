@@ -21,7 +21,9 @@ body {
   max-width: 1080px;
   margin: 100px auto;
   padding: 20px;
-  background-image: url("https://images.pexels.com/photos/391213/pexels-photo-391213.jpeg?cs=srgb&dl=pexels-posawee-suwannaphati-391213.jpg&fm=jpg") !important;
+  // background-color: rgb(141, 204, 183);
+  background-color: rgb(104, 114, 114);
+  // background-image: url("https://images.pexels.com/photos/391213/pexels-photo-391213.jpeg?cs=srgb&dl=pexels-posawee-suwannaphati-391213.jpg&fm=jpg") !important;
   background-size: cover;
   // background-color: whitesmoke;
 }
@@ -180,8 +182,9 @@ header {
 }
 .contacts-uptext {
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
+  color: red;
 }
 .contacts-block {
   width: 60%;
@@ -286,5 +289,47 @@ header {
 }
 .addNew {
   color: blue;
-  padding: 15px;
+  padding: 25px;
+  margin-left: 200px;
+  border-radius: 11px;
+  border: 1px solid gray;
+  transition: 200ms;
+
+  background: greenyellow;
+}
+.admin-buts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-edit {
+  padding: 10px;
+  color: gold;
+  font-size: 15px;
+  border: 25px;
+
+  background: green;
+  border-radius: 5px;
+}
+.btn-del {
+  padding: 10px;
+  color: red;
+  font-size: 15px;
+  border: 15px;
+  background: blue;
+  border-radius: 5px;
+}
+.product-det {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  max-width: 1080px;
+  height: auto;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: rgb(104, 114, 114);
+  background-size: cover;
 }

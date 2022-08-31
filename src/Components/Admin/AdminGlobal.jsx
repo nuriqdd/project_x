@@ -2,14 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { cartContext } from "../../context/CartContextProvider";
 import "../Admin/AdminGlobal.css";
-
 import { productsContextFire } from "../../context/ProductsContextProvider";
 
 const AdminGlobal = () => {
   const { cart, getCarts, changeProductCount, deleteCartProduct } =
     useContext(cartContext);
-  const { editProduct, getOneProduct, addProduct, clearInputs, deleteProduct } =
-    useContext(productsContextFire);
+  const {
+    editProduct,
+    getOneProduct,
+    addProduct,
+    clearInputs,
+    deleteProduct,
+    getProducts,
+    productsArr,
+  } = useContext(productsContextFire);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -27,16 +33,10 @@ const AdminGlobal = () => {
     );
   }
 
-  let { id } = useParams();
-  console.log(id);
-
   useEffect(() => {
-    getCarts();
+    getProducts();
   }, []);
-
-  useEffect(() => {
-    getOneProduct(id);
-  }, []);
+  console.log(productsArr);
 
   function handleClick() {
     if (!title || !price || !image || !description || !category) {
@@ -54,18 +54,17 @@ const AdminGlobal = () => {
 
     addProduct(product);
   }
-  console.log(id);
 
   return (
     <div className="cart">
       <button className="addNew" onClick={() => navigate("/admin")}>
         Добавить товар
       </button>
-      {cart.products ? (
+      {productsArr ? (
         <>
-          {cart.products.length ? (
+          {productsArr.length ? (
             <div className="boxCartTable">
-              <h1 style={{ margin: "10px auto" }}>Cart</h1>
+              <h1 style={{ margin: "10px auto" }}>Список Товаров</h1>
               <table align="center" border={1} className="tableCart">
                 <thead>
                   <tr>
@@ -77,13 +76,17 @@ const AdminGlobal = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.products.map((elem) => (
-                    <tr key={elem.item.id}>
+                  {productsArr.map((elem) => (
+                    <tr key={elem.id}>
                       <td>
-                        <img src={elem.item.image} alt={elem.item.title} />
+                        <img
+                          // style={{ width: "150px", height: "150px" }}
+                          src={elem.image}
+                          alt={elem.title}
+                        />
                       </td>
-                      <td>{elem.item.title}</td>
-                      <td>{elem.item.price}</td>
+                      <td>{elem.title}</td>
+                      <td>{elem.price}</td>
                       <td>
                         <input
                           id="inpSum"
@@ -91,19 +94,24 @@ const AdminGlobal = () => {
                           type="number"
                           value={elem.count}
                           onChange={(e) =>
-                            changeProductCount(elem.item.id, e.target.value)
+                            changeProductCount(elem.id, e.target.value)
                           }
                         />
                       </td>
                       <td id="textSubPrice">{elem.subPrice}</td>
                       <td>
                         <button
-                          onClick={() => deleteProduct(id)}
-                          className="btn"
+                          onClick={() => deleteProduct(elem.id)}
+                          className="btn-del"
                         >
                           Удалить
                         </button>
-                        <button onClick={() => editProduct(id)}>Edit</button>
+                        <button
+                          onClick={() => navigate(`/edit/${elem.id}`)}
+                          className="btn-edit"
+                        >
+                          Edit
+                        </button>
                       </td>
                     </tr>
                   ))}
