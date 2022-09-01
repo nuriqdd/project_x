@@ -70,6 +70,9 @@ const CartContextProvider = ({ children }) => {
   };
 
   const addLikeToProduct = (productItem) => {
+    if (!localStorage.getItem("likes")) {
+      localStorage.setItem("likes", JSON.stringify({ products: [] }));
+    }
     let likes = JSON.parse(localStorage.getItem("likes"));
     if (!likes) {
       likes = {

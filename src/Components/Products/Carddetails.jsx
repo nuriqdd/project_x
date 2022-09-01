@@ -29,7 +29,7 @@ const Carddetails = () => {
       ) : (
         <div className="product-det">
           <div key={productDetails.id} className="card-exact">
-            <div className="card exact">
+            <div className="card exact_details">
               <img width={133} height={120} src={productDetails.image} alt="" />
               <div className="card-details">
                 <p>{productDetails.title}</p>
@@ -60,14 +60,7 @@ const Carddetails = () => {
                 </div>
                 <h3>{productDetails.description}</h3>
                 <div className="admin-panel">
-                  {checkAdmin(user.email) ? (
-                    <>
-                      <button>delete</button>
-                      <button>edit</button>
-                    </>
-                  ) : (
-                    <></>
-                  )}
+                  {checkAdmin(user.email) ? <></> : <></>}
                 </div>
                 {/* <button onClick={() => handleClickDelete(product.id)}>
                             delete

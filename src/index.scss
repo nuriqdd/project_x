@@ -333,3 +333,13 @@ header {
   background-color: rgb(104, 114, 114);
   background-size: cover;
 }
+.exact_details {
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.exact_details img {
+  width: 30%;
+}

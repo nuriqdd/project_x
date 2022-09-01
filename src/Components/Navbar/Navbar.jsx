@@ -9,11 +9,18 @@ import AddShoppingCart from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
+import { ADMINS } from "../../helpers/consts";
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(authContext);
 
   const navigate = useNavigate();
+
+  const isAdmin = () => {
+    let res;
+    user ? (res = ADMINS.includes(user.email)) : (res = false);
+    return res;
+  };
   return (
     <div className="MainNavbar">
       <div className="navbar">
@@ -32,13 +39,17 @@ const Navbar = () => {
             Products
             <ArrowBackIosIcon className="arrow" />
           </div>
-          <div
-            className="navbar-nav-router"
-            onClick={() => navigate("/adminG")}
-          >
-            Admin
-            <ArrowBackIosIcon className="arrow" />
-          </div>
+          {isAdmin() ? (
+            <div
+              className="navbar-nav-router"
+              onClick={() => navigate("/adminG")}
+            >
+              Admin
+              <ArrowBackIosIcon className="arrow" />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="navbar-icons">
           <AddShoppingCart
